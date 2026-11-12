@@ -1,0 +1,86 @@
+/* Основные настройки черной темы */
+body {
+    background-color: #0b0d12; /* Глубокий черный фон */
+    color: #ffffff; /* Белый текст */
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, #161b26 0%, #0b0d12 100%);
+    border-bottom: 1px solid #232a3b;
+}
+
+header h1 {
+    font-size: 42px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* Выделяем букву X неоновым цветом */
+header h1 span {
+    color: #00f0ff;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+/* Карточки для блоков */
+.card {
+    background-color: #131722;
+    border: 1px solid #232a3b;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #94a3b8;
+}
+
+/* Стили выпадающих списков */
+select {
+    width: 100%;
+    padding: 12px;
+    background-color: #1c2230;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.price-box {
+    font-size: 24px;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #1c2230;
+    border-left: 4px solid #00f0ff;
+    border-radius: 6px;
+}
+
+.fps-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #232a3b;
+    font-size: 18px;
+}
+
+.fps-item strong {
+    color: #00ff88; /* Ярко-зеленый для цифр FPS */
+}

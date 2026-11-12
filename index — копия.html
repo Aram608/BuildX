@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BuildX — Конфигуратор игровых ПК</title>
+    <!-- Подключаем файл со стилями -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Build<span>X</span></h1>
+        <p>Собери свой идеальный игровой ПК и узнай FPS в играх</p>
+    </header>
+
+    <main class="container">
+        <!-- Блок выбора комплектующих -->
+        <section class="card">
+            <h2>1. Выбери комплектующие</h2>
+            
+            <label>Процессор (CPU):</label>
+            <select id="cpu">
+                <option value="0" data-score="0">Не выбрано</option>
+                <option value="150" data-score="40">Intel Core i5-12400F (150$)</option>
+                <option value="280" data-score="65">AMD Ryzen 5 7500F (280$)</option>
+                <option value="450" data-score="90">AMD Ryzen 7 7800X3D (450$)</option>
+            </select>
+
+            <label>Видеокарта (GPU):</label>
+            <select id="gpu">
+                <option value="0" data-score="0">Не выбрано</option>
+                <option value="300" data-score="50">NVIDIA RTX 4060 (300$)</option>
+                <option value="600" data-score="75">NVIDIA RTX 4070 Super (600$)</option>
+                <option value="1000" data-score="100">NVIDIA RTX 4080 Super (1000$)</option>
+            </select>
+        </section>
+
+        <!-- Блок результатов и FPS -->
+        <section class="card result">
+            <h2>2. Итог и производительность</h2>
+            <div class="price-box">Итоговая цена: <span id="total-price">0</span> $</div>
+            
+            <h3>Ожидаемый FPS (1080p Высокие):</h3>
+            <div class="fps-item">
+                <span>Counter-Strike 2:</span>
+                <strong id="fps-cs2">0 FPS</strong>
+            </div>
+            <div class="fps-item">
+                <span>Cyberpunk 2077:</span>
+                <strong id="fps-cp">0 FPS</strong>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подключаем файл с логикой -->
+    <script src="script.js"></script>
+</body>
+</html>
