@@ -1,1 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildDX — Подбор комплектующих и тест FPS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="wrapper">
+        <header>
+            <h1 class="logo">Build<span>DX</span></h1>
+            <p class="subtitle">Узнай свой FPS в играх, подбирай комплектующие и исследуй полную базу железа</p>
+        </header>
+
+        <!-- Навигационные вкладки -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="catalog">Каталог железа</button>
+            <button class="tab-btn" data-tab="fps-calculator">Узнай свой FPS в играх</button>
+        </div>
+
+        <!-- ВКЛАДКА 1: КАТАЛОГ КОМПЛЕКТУЮЩИХ -->
+        <div id="catalog" class="tab-content active">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Поиск по железу (например: RTX 4070, Ryzen 7, 32GB RAM, 2TB SSD)...">
+            </div>
+
+            <div id="catalog-list">
+                <!-- ПРОЦЕССОРЫ (CPU) -->
+                <div class="category-block" data-category="cpu">
+                    <h2 class="category-header">Процессоры (CPU)</h2>
+                    <div class="series-section">
+                        <div class="series-title">AMD Ryzen 9000 & 7000 Series (AM5)</div>
+                        <div class="component-grid">
+                            <div class="component-card">AMD Ryzen 9 9950X</div>
+                            <div class="component-card">AMD Ryzen 9 9900X</div>
+                            <div class="component-card">AMD Ryzen 7 9700X</div>
+                            <div class="component-card">AMD Ryzen 5 9600X</div>
+                            <div class="component-card">AMD Ryzen 9 7950X3D</div>
+                            <div class="component-card">AMD Ryzen 9 7900X3D</div>
+                            <div class="component-card">AMD Ryzen 7 7800X3D</div>
+                            <div class="component-card">AMD Ryzen 7 7700X</div>
+                            <div class="component-card">AMD Ryzen 5 7600X</div>
+                        </div>
+                    </div>
+                    <div class="series-section">
+                        <div class="series-title">Intel Core 14th Gen & Ultra (LGA1700 / LGA1851)</div>
+                        <div class="component-grid">
+                            <div class="component-card">Intel Core Ultra 9 285K</div>
+                            <div class="component-card">Intel Core Ultra 7 265K</div>
+                            <div class="component-card">Intel Core Ultra 5 245K</div>
+                            <div class="component-card">Intel Core i9-14900KS</div>
+                            <div class="component-card">Intel Core i9-14900K</div>
+                            <div class="component-card">Intel Core i7-14700K</div>
+                            <div class="component-card">Intel Core i5-14600K</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ВИДЕОКАРТЫ (GPU) -->
+                <div class="category-block" data-category="gpu">
+                    <h2 class="category-header">Видеокарты (GPU)</h2>
+                    <div class="series-section">
+                        <div class="series-title">NVIDIA GeForce RTX 50 & 40 Series</div>
+                        <div class="component-grid">
+                            <div class="component-card">NVIDIA GeForce RTX 5090 (32GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 5080 (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 5070 Ti (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 5070 (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4090 (24GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4080 Super (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4080 (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4070 Ti Super (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4070 Ti (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4070 Super (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4070 (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4060 Ti (16GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4060 Ti (8GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 4060 (8GB)</div>
+                        </div>
+                    </div>
+                    <div class="series-section">
+                        <div class="series-title">NVIDIA GeForce RTX 30 Series</div>
+                        <div class="component-grid">
+                            <div class="component-card">NVIDIA GeForce RTX 3090 Ti (24GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3090 (24GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3080 Ti (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3080 (10GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3070 Ti (8GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3070 (8GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3060 Ti (8GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3060 (12GB)</div>
+                            <div class="component-card">NVIDIA GeForce RTX 3050 (8GB)</div>
+                        </div>
+                    </div>
+                    <div class="series-section">
+                        <div class="series-title">AMD Radeon RX 7000 & 6000 Series</div>
+                        <div class="component-grid">
+                            <div class="component-card">AMD Radeon RX 7900 XTX (24GB)</div>
+                            <div class="component-card">AMD Radeon RX 7900 XT (20GB)</div>
+                            <div class="component-card">AMD Radeon RX 7900 GRE (16GB)</div>
+                            <div class="component-card">AMD Radeon RX 7800 XT (16GB)</div>
+                            <div class="component-card">AMD Radeon RX 7700 XT (12GB)</div>
+                            <div class="component-card">AMD Radeon RX 7600 XT (16GB)</div>
+                            <div class="component-card">AMD Radeon RX 7600 (8GB)</div>
+                            <div class="component-card">AMD Radeon RX 6950 XT (16GB)</div>
+                            <div class="component-card">AMD Radeon RX 6800 XT (16GB)</div>
+                            <div class="component-card">AMD Radeon RX 6700 XT (12GB)</div>
+                        </div>
+                    </div>
+                    <div class="series-section">
+                        <div class="series-title">Intel Arc Battlemage & Alchemist</div>
+                        <div class="component-grid">
+                            <div class="component-card">Intel Arc B580 (12GB Battlemage)</div>
+                            <div class="component-card">Intel Arc B570 (10GB Battlemage)</div>
+                            <div class="component-card">Intel Arc A770 (16GB)</div>
+                            <div class="component-card">Intel Arc A750 (8GB)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ОПЕРАТИВНАЯ ПАМЯТЬ (RAM) -->
+                <div class="category-block" data-category="ram">
+                    <h2 class="category-header">Оперативная память (RAM)</h2>
+                    <div class="series-section">
+                        <div class="series-title">DDR5 & DDR4 Kits</div>
+                        <div class="component-grid">
+                            <div class="component-card">DDR5 16GB (1x16GB) 5600 MHz</div>
+                            <div class="component-card">DDR5 32GB (2x16GB) 6000 MHz CL30</div>
+                            <div class="component-card">DDR5 32GB (2x16GB) 6400 MHz CL32</div>
+                            <div class="component-card">DDR5 64GB (2x32GB) 6000 MHz CL30</div>
+                            <div class="component-card">DDR5 96GB (2x48GB) 5600 MHz</div>
+                            <div class="component-card">DDR4 16GB (2x8GB) 3200 MHz CL16</div>
+                            <div class="component-card">DDR4 32GB (2x16GB) 3600 MHz CL18</div>
+                            <div class="component-card">DDR4 64GB (2x32GB) 3200 MHz</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- НАКОПИТЕЛИ SSD -->
+                <div class="category-block" data-category="ssd">
+                    <h2 class="category-header">Накопители (SSD NVMe / SATA)</h2>
+                    <div class="series-section">
+                        <div class="series-title">Высокоскоростные M.2 NVMe SSD</div>
+                        <div class="component-grid">
+                            <div class="component-card">Samsung 990 PRO M.2 NVMe 4TB</div>
+                            <div class="component-card">Samsung 990 PRO M.2 NVMe 2TB</div>
+                            <div class="component-card">Samsung 990 PRO M.2 NVMe 1TB</div>
+                            <div class="component-card">WD Black SN850X M.2 NVMe 4TB</div>
+                            <div class="component-card">WD Black SN850X M.2 NVMe 2TB</div>
+                            <div class="component-card">Kingston KC3000 M.2 NVMe 2TB</div>
+                            <div class="component-card">Kingston KC3000 M.2 NVMe 1TB</div>
+                            <div class="component-card">Crucial T700 M.2 NVMe Gen5 2TB</div>
+                            <div class="component-card">Kingston NV2 M.2 NVMe 2TB</div>
+                            <div class="component-card">Kingston NV2 M.2 NVMe 1TB</div>
+                            <div class="component-card">Samsung 870 EVO SATA III 2.5" 2TB</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- БЛОКИ ПИТАНИЯ (PSU) -->
+                <div class="category-block" data-category="psu">
+                    <h2 class="category-header">Блоки питания (PSU)</h2>
+                    <div class="series-section">
+                        <div class="series-title">Блоки питания с сертификатом 80+ Gold / Platinum</div>
+                        <div class="component-grid">
+                            <div class="component-card">Corsair RM1000x Shift (1000W 80+ Gold)</div>
+                            <div class="component-card">Corsair RM850x Shift (850W 80+ Gold)</div>
+                            <div class="component-card">Seasonic Vertex GX-1200 (1200W 80+ Gold)</div>
+                            <div class="component-card">Seasonic Focus GX-850 ATX 3.0 (850W)</div>
+                            <div class="component-card">MSI MPG A1000G PCIE5 (1000W 80+ Gold)</div>
+                            <div class="component-card">be quiet! Straight Power 12 850W</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 2: КАЛЬКУЛЯТОР FPS В ИГРАХ -->
+        <div id="fps-calculator" class="tab-content">
+            <div class="fps-container">
+                <h2>Тест и расчет FPS в играх</h2>
+                <p class="fps-desc">Выберите ваши ключевые компоненты и разрешение экрана, чтобы узнать ориентир производительности в популярных играх.</p>
+
+                <div class="fps-form-group">
+                    <label for="gpuSelect">Выберите видеокарту:</label>
+                    <select id="gpuSelect" class="fps-select">
+                        <option value="5090">NVIDIA GeForce RTX 5090</option>
+                        <option value="5080">NVIDIA GeForce RTX 5080</option>
+                        <option value="4090">NVIDIA GeForce RTX 4090</option>
+                        <option value="4080s">NVIDIA GeForce RTX 4080 Super</option>
+                        <option value="4070ts">NVIDIA GeForce RTX 4070 Ti Super</option>
+                        <option value="4070s">NVIDIA GeForce RTX 4070 Super</option>
+                        <option value="4060">NVIDIA GeForce RTX 4060</option>
+                        <option value="7900xtx">AMD Radeon RX 7900 XTX</option>
+                        <option value="7800xt">AMD Radeon RX 7800 XT</option>
+                        <option value="b580">Intel Arc B580</option>
+                    </select>
+                </div>
+
+                <div class="fps-form-group">
+                    <label for="cpuSelect">Выберите процессор:</label>
+                    <select id="cpuSelect" class="fps-select">
+                        <option value="top">Ryzen 7 7800X3D / i9-14900K / 9950X</option>
+                        <option value="mid">Ryzen 5 7600X / i5-14600K</option>
+                        <option value="budget">Ryzen 5 5600 / i3-13100</option>
+                    </select>
+                </div>
+
+                <div class="fps-form-group">
+                    <label for="resSelect">Разрешение экрана:</label>
+                    <select id="resSelect" class="fps-select">
+                        <option value="1080">Full HD (1920x1080)</option>
+                        <option value="1440" selected>2K Quad HD (2560x1440)</option>
+                        <option value="2160">4K Ultra HD (3840x2160)</option>
+                    </select>
+                </div>
+
+                <button id="calcFpsBtn" class="calc-btn">Рассчитать FPS</button>
+
+                <div id="fpsResults" class="fps-results-hidden">
+                    <h3>Примерный результат в играх (Ультра настройки):</h3>
+                    <div class="fps-games-grid">
+                        <div class="game-card">
+                            <span class="game-name">Cyberpunk 2077</span>
+                            <span id="resCP" class="game-fps">-- FPS</span>
+                        </div>
+                        <div class="game-card">
+                            <span class="game-name">Counter-Strike 2</span>
+                            <span id="resCS" class="game-fps">-- FPS</span>
+                        </div>
+                        <div class="game-card">
+                            <span class="game-name">Black Myth: Wukong</span>
+                            <span id="resWukong" class="game-fps">-- FPS</span>
+                        </div>
+                        <div class="game-card">
+                            <span class="game-name">Grand Theft Auto V</span>
+                            <span id="resGTA" class="game-fps">-- FPS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
