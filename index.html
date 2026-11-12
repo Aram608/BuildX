@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<head>
+    <title>BuildX — Конфигуратор ПК</title>
+    <meta name="description" content="Собери свой игровой ПК в BuildX, выбери комплектующие и рассчитай производительность.">
+</head>
     <header>
         <h1>Build<span>X</span></h1>
         <p>Собери свой идеальный игровой ПК и узнай FPS в играх</p>
@@ -20,7 +23,23 @@
         <!-- Блок выбора комплектующих -->
         <section class="card">
             <h2>1. Выбери комплектующие</h2>
-            
+          <div class="component-card">
+    <label>Оперативная память (RAM):</label>
+    <select id="ram" onchange="calculateBuild()">
+        <option value="0" data-score="0">Не выбрано</option>
+        <option value="50" data-score="10">16 GB DDR4 (50$)</option>
+        <option value="90" data-score="20">32 GB DDR5 (90$)</option>
+    </select>
+</div>
+
+<div class="component-card">
+    <label>Накопитель (SSD M.2):</label>
+    <select id="ssd" onchange="calculateBuild()">
+        <option value="0" data-score="0">Не выбрано</option>
+        <option value="70" data-score="15">1 TB NVMe SSD (70$)</option>
+        <option value="130" data-score="25">2 TB NVMe SSD (130$)</option>
+    </select><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</div>  
             <label>Процессор (CPU):</label>
             <select id="cpu">
                 <option value="0" data-score="0">Не выбрано</option>
