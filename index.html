@@ -1,121 +1,242 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-    <title>BuildX — Конфигуратор ПК</title>
-    <meta name="description" content="Собери свой игровой ПК в BuildX, выбери комплектующие и рассчитай производительность.">
-</head>
+<head>
     <meta charset="UTF-8">
-    <title>BuildX — Конфигуратор игровых ПК</title>
-    <!-- Подключаем файл со стилями -->
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог видеокарт</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            color: #f1f5f9;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-color);
+        }
+
+        .series-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .series-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #60a5fa;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .gpu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .gpu-item {
+            background-color: #0f172a;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            transition: transform 0.1s, border-color 0.2s;
+        }
+
+        .gpu-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+            padding: 20px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<head>
-    <title>BuildX — Конфигуратор ПК</title>
-    <meta name="description" content="Собери свой игровой ПК в BuildX, выбери комплектующие и рассчитай производительность.">
-</head>
-    <header>
-        <h1>Build<span>X</span></h1>
-        <p>Собери свой идеальный игровой ПК и узнай FPS в играх</p>
-    </header>
-<!-- Блок выбора оперативной памяти -->
-<div class="card">
-    <label>Оперативная память (RAM):</label>
-    <select id="ram" onchange="calculateBuild()">
-        <option value="0" data-score="0">Не выбрано</option>
-        <option value="50" data-score="10">16 GB DDR4 (50$)</option>
-        <option value="90" data-score="20">32 GB DDR5 ($)</option>
-    </select>
-</div>
 
-<!-- Блок выбора SSD -->
-<div class="card">
-    <label>Накопитель (SSD M.2):</label>
-    <select id="ssd" onchange="calculateBuild()">
-        <option value="0" data-score="0">Не выбрано</option>
-        <option value="70" data-score="15">1 TB NVMe SSD (70$)</option>
-        <option value="130" data-score="25">2 TB NVMe SSD (130$)</option>
-    </select>
-</div>
-    
-        
-    
-    
-    </select>
-</div>
+    <div class="container">
+        <h1>Каталог видеокарт</h1>
+        <input type="text" id="searchInput" class="search-box" placeholder="Поиск видеокарты (например: RTX 4070, RX 7800 XT, Arc)...">
 
-<div class="component-card">
-    <label>Накопитель (SSD M.2):</label>
-    <select id="ssd" onchange="calculateBuild()">
-        <option value="0" data-score="0">Не выбрано</option>
-        <option value="70" data-score="15">1 TB NVMe SSD (70$)</option>
-        <option value="130" data-score="25">2 TB NVMe SSD (130$)</option>
-    </select><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</div>  
-            <label>Процессор (CPU):</label>
-            <select id="cpu">
-                <option value="0" data-score="0">Не выбрано</option>
-                <option value="150" data-score="40">Intel Core i5-12400F (150$)</option>
-                <option value="280" data-score="65">AMD Ryzen 5 7500F (280$)</option>
-                <option value="450" data-score="90">AMD Ryzen 7 7800X3D (450$)</option>
-            </select>
-
-           
-    
-    <!-- Топовые / Мощные -->
-    <option value="2000" data-score="140">NVIDIA RTX 5090 (2000$)</option>
-    <option value="1600" data-score="115">NVIDIA RTX 4090 (1600$)</option>
-    <option value="1200" data-score="125">NVIDIA RTX 5080 (1200$)</option>
-    <option value="1000" data-score="100">AMD RX 7900 XTX (1000$)</option>
-    <option value="900" data-score="110">NVIDIA RTX 5070 Ti (900$)</option>
-    <option value="950" data-score="95">NVIDIA RTX 4080 Super (950$)</option>
-    <option value="800" data-score="90">AMD RX 9070 XT (800$)</option>
-    <option value="900" data-score="88">NVIDIA RTX 4080 (900$)</option>
-    <option value="750" data-score="85">AMD RX 7900 XT (750$)</option>
-    <option value="700" data-score="82">NVIDIA RTX 5070 (700$)</option>
-
-    <!-- Очень хорошие -->
-    <option value="800" data-score="80">NVIDIA RTX 4070 Ti Super (800$)</option>
-    <option value="650" data-score="75">AMD RX 9070 (650$)</option>
-    <option value="600" data-score="72">NVIDIA RTX 4070 Super (600$)</option>
-    <option value="700" data-score="70">NVIDIA RTX 4070 Ti (700$)</option>
-    <option value="500" data-score="65">AMD RX 7800 XT (500$)</option>
-    <option value="550" data-score="60">NVIDIA RTX 4070 (550$)</option>
-    <option value="530" data-score="62">AMD RX 7900 GRE (530$)</option>
-    <option value="600" data-score="58">NVIDIA RTX 3080 Ti (600$)</option>
-    <option value="550" data-score="55">NVIDIA RTX 3080 (550$)</option>
-    <option value="580" data-score="57">AMD RX 6950 XT (580$)</option>
-
-    <!-- Хорошие для 1080p / 1440p -->
-    <option value="450" data-score="50">NVIDIA RTX 5060 Ti (450$)</option>
-    <option value="380" data-score="47">AMD RX 9060 XT (380$)</option>
-    <option value="400" data-score="45">NVIDIA RTX 4060 Ti (400$)</option>
-    <option value="300" data-score="35">NVIDIA RTX 4060 (300$)</option>
-    <option value="420" data-score="48">AMD RX 7700 XT (420$)</option>
-    <option value="350" data-score="40">AMD RX 7600 XT (350$)</option>
-    <option value="280" data-score="33">AMD RX 7600 (280$)</option>
-    <option value="350" data-score="38">NVIDIA RTX 3060 Ti (350$)</option>
-    <option value="280" data-score="30">NVIDIA RTX 3060 (280$)</option>
-    <option value="200" data-score="20">NVIDIA GTX 1660 Super (200$)</option>
-</select>
-        <!-- Блок результатов и FPS -->
-        <section class="card result">
-            <h2>2. Итог и производительность</h2>
-            <div class="price-box">Итоговая цена: <span id="total-price">0</span> $</div>
-            
-            <h3>Ожидаемый FPS (1080p Высокие):</h3>
-            <div class="fps-item">
-                <span>Counter-Strike 2:</span>
-                <strong id="fps-cs2">0 FPS</strong>
+        <div id="catalog">
+            <!-- NVIDIA RTX 50 Series -->
+            <div class="series-section" data-series="nvidia rtx 50 series">
+                <div class="series-title">NVIDIA RTX 50 Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">NVIDIA GeForce RTX 5090</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 5080</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 5070 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 5070</div>
+                </div>
             </div>
-            <div class="fps-item">
-                <span>Cyberpunk 2077:</span>
-                <strong id="fps-cp">0 FPS</strong>
-            </div>
-        </section>
-    </main>
 
-    <!-- Подключаем файл с логикой -->
-    <script src="script.js"></script>
+            <!-- NVIDIA RTX 40 Series -->
+            <div class="series-section" data-series="nvidia rtx 40 series">
+                <div class="series-title">NVIDIA RTX 40 Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">NVIDIA GeForce RTX 4090</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4080 Super</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4080</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4070 Ti Super</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4070 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4070 Super</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4070</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4060 Ti (16GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4060 Ti (8GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 4060</div>
+                </div>
+            </div>
+
+            <!-- NVIDIA RTX 30 Series -->
+            <div class="series-section" data-series="nvidia rtx 30 series">
+                <div class="series-title">NVIDIA RTX 30 Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">NVIDIA GeForce RTX 3090 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3090</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3080 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3080 (12GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3080 (10GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3070 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3070</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3060 Ti</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3060 (12GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3060 (8GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3050 (8GB)</div>
+                    <div class="gpu-item">NVIDIA GeForce RTX 3050 (6GB)</div>
+                </div>
+            </div>
+
+            <!-- AMD Radeon RX 7000 Series -->
+            <div class="series-section" data-series="amd radeon rx 7000 series">
+                <div class="series-title">AMD Radeon RX 7000 Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">AMD Radeon RX 7900 XTX</div>
+                    <div class="gpu-item">AMD Radeon RX 7900 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 7900 GRE</div>
+                    <div class="gpu-item">AMD Radeon RX 7800 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 7700 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 7600 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 7600</div>
+                </div>
+            </div>
+
+            <!-- AMD Radeon RX 6000 Series -->
+            <div class="series-section" data-series="amd radeon rx 6000 series">
+                <div class="series-title">AMD Radeon RX 6000 Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">AMD Radeon RX 6950 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6900 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6800 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6800</div>
+                    <div class="gpu-item">AMD Radeon RX 6750 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6700 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6700</div>
+                    <div class="gpu-item">AMD Radeon RX 6650 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6600 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6600</div>
+                    <div class="gpu-item">AMD Radeon RX 6500 XT</div>
+                    <div class="gpu-item">AMD Radeon RX 6400</div>
+                </div>
+            </div>
+
+            <!-- Intel Arc Series -->
+            <div class="series-section" data-series="intel arc series">
+                <div class="series-title">Intel Arc Series</div>
+                <div class="gpu-grid">
+                    <div class="gpu-item">Intel Arc B580 (Battlemage)</div>
+                    <div class="gpu-item">Intel Arc B570 (Battlemage)</div>
+                    <div class="gpu-item">Intel Arc A770 (16GB)</div>
+                    <div class="gpu-item">Intel Arc A770 (8GB)</div>
+                    <div class="gpu-item">Intel Arc A750</div>
+                    <div class="gpu-item">Intel Arc A580</div>
+                    <div class="gpu-item">Intel Arc A380</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Простой живой поиск по картам
+        const searchInput = document.getElementById('searchInput');
+        const sections = document.querySelectorAll('.series-section');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            sections.forEach(section => {
+                const items = section.querySelectorAll('.gpu-item');
+                let hasVisible = false;
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = 'block';
+                        hasVisible = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Скрываем целую секцию, если в ней ничего не нашлось
+                if (hasVisible) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
