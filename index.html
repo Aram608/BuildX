@@ -68,7 +68,45 @@
                 <option value="1000" data-score="100">NVIDIA RTX 4080 Super (1000$)</option>
             </select>
         </section>
+<select id="gpu" onchange="calculateBuild()">
+    <option value="0" data-score="0">Не выбрано</option>
+    
+    <!-- Топовые / Мощные -->
+    <option value="2000" data-score="140">NVIDIA RTX 5090 (2000$)</option>
+    <option value="1600" data-score="115">NVIDIA RTX 4090 (1600$)</option>
+    <option value="1200" data-score="125">NVIDIA RTX 5080 (1200$)</option>
+    <option value="1000" data-score="100">AMD RX 7900 XTX (1000$)</option>
+    <option value="900" data-score="110">NVIDIA RTX 5070 Ti (900$)</option>
+    <option value="950" data-score="95">NVIDIA RTX 4080 Super (950$)</option>
+    <option value="800" data-score="90">AMD RX 9070 XT (800$)</option>
+    <option value="900" data-score="88">NVIDIA RTX 4080 (900$)</option>
+    <option value="750" data-score="85">AMD RX 7900 XT (750$)</option>
+    <option value="700" data-score="82">NVIDIA RTX 5070 (700$)</option>
 
+    <!-- Очень хорошие -->
+    <option value="800" data-score="80">NVIDIA RTX 4070 Ti Super (800$)</option>
+    <option value="650" data-score="75">AMD RX 9070 (650$)</option>
+    <option value="600" data-score="72">NVIDIA RTX 4070 Super (600$)</option>
+    <option value="700" data-score="70">NVIDIA RTX 4070 Ti (700$)</option>
+    <option value="500" data-score="65">AMD RX 7800 XT (500$)</option>
+    <option value="550" data-score="60">NVIDIA RTX 4070 (550$)</option>
+    <option value="530" data-score="62">AMD RX 7900 GRE (530$)</option>
+    <option value="600" data-score="58">NVIDIA RTX 3080 Ti (600$)</option>
+    <option value="550" data-score="55">NVIDIA RTX 3080 (550$)</option>
+    <option value="580" data-score="57">AMD RX 6950 XT (580$)</option>
+
+    <!-- Хорошие для 1080p / 1440p -->
+    <option value="450" data-score="50">NVIDIA RTX 5060 Ti (450$)</option>
+    <option value="380" data-score="47">AMD RX 9060 XT (380$)</option>
+    <option value="400" data-score="45">NVIDIA RTX 4060 Ti (400$)</option>
+    <option value="300" data-score="35">NVIDIA RTX 4060 (300$)</option>
+    <option value="420" data-score="48">AMD RX 7700 XT (420$)</option>
+    <option value="350" data-score="40">AMD RX 7600 XT (350$)</option>
+    <option value="280" data-score="33">AMD RX 7600 (280$)</option>
+    <option value="350" data-score="38">NVIDIA RTX 3060 Ti (350$)</option>
+    <option value="280" data-score="30">NVIDIA RTX 3060 (280$)</option>
+    <option value="200" data-score="20">NVIDIA GTX 1660 Super (200$)</option>
+</select>
         <!-- Блок результатов и FPS -->
         <section class="card result">
             <h2>2. Итог и производительность</h2>
