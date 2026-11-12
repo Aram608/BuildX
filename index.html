@@ -12,7 +12,108 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#0b0b0e] text-white min-h-screen flex flex-col font-sans">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildCores Clone - PC Builder & 3D Studio</title>
+    <!-- Подключаем Tailwind CSS для красивого интерфейса -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем Three.js для 3D сборки -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            background-color: #0b0b0e;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .accent-magenta {
+            color: #ff007f;
+        }
+        .bg-magenta {
+            background-color: #ff007f;
+        }
+        .border-magenta {
+            border-color: #ff007f;
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+        }
+        /* Центрирование холста 3D */
+        #canvas-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #141419;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 md:p-8">
 
+    <!-- Шапка сайта -->
+    <header class="w-full max-w-6xl flex justify-between items-center py-4 border-b border-gray-800 mb-6">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-magenta rounded-lg flex items-center justify-center font-bold text-xl shadow-lg">BC</div>
+            <span class="text-2xl font-black tracking-wider">BUILD<span class="accent-magenta">CORES</span></span>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm text-gray-400">
+            <a href="#" class="text-white hover:text-pink-500 transition">Конфигуратор</a>
+            <a href="#" class="hover:text-pink-500 transition">3D Студия</a>
+            <a href="#" class="hover:text-pink-500 transition">Готовые сборки</a>
+        </nav>
+        <button class="bg-magenta px-4 py-2 rounded-lg font-semibold text-sm glow-btn transition">Сохранить сборку</button>
+    </header>
+
+    <!-- Основной контент (по центру) -->
+    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow">
+        
+        <!-- Левая колонка: Комплектующие -->
+        <div class="lg:col-span-2 space-y-4">
+            <div class="bg-[#141419] p-5 rounded-xl border border-gray-800">
+                <h2 class="text-lg font-bold mb-4 flex justify-between items-center">
+                    <span>Конфигурация ПК</span>
+                    <span class="text-sm accent-magenta font-normal" id="total-price">0 ₽</span>
+                </h2>
+                
+                <!-- Список деталей -->
+                <div id="parts-list" class="space-y-3">
+                    <!-- Шаблон компонента -->
+                    <div class="flex items-center justify-between bg-[#1e1e24] p-3 rounded-lg border border-gray-700">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-gray-400 text-sm w-24">Процессор</span>
+                            <span class="font-medium text-sm" id="slot-cpu">AMD Ryzen 5 7600X</span>
+                        </div>
+                        <button onclick="selectPart('cpu')" class="text-xs bg-gray-700 hover:bg-pink-600 px-3 py-1.5 rounded transition">Изменить</button>
+                    </div>
+
+                    <div class="flex items-center justify-between bg-[#1e1e24] p-3 rounded-lg border border-gray-700">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-gray-400 text-sm w-24">Видеокарта</span>
+                            <span class="font-medium text-sm" id="slot-gpu">NVIDIA RTX 4070 Super</span>
+                        </div>
+                        <button onclick="selectPart('gpu')" class="text-xs bg-gray-700 hover:bg-pink-600 px-3 py-1.5 rounded transition">Изменить</button>
+                    </div>
+
+                    <div class="flex items-center justify-between bg-[#1e1e24] p-3 rounded-lg border border-gray-700">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-gray-400 text-sm w-24">Память (RAM)</span>
+                            <span class="font-medium text-sm" id="slot-ram">32GB DDR5 6000MHz</span>
+                        </div>
+                        <button onclick="selectPart('ram')" class="text-xs bg-gray-700 hover:bg-pink-600 px-3 py-1.5 rounded transition">Изменить</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок характеристик и питания -->
+            <div class="bg-[#141419] p-5 rounded-xl border border-gray-800 flex justify-between items-center text-sm">
+                <div>
+                    <p class="text-gray-400">Энергопотребление (TDP):</p>
     <!-- Верхняя навигация -->
     <header class="border-b border-zinc-800 bg-[#141419]/80 backdrop-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
         <div class="flex items-center space-x-3">
