@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildCores Clone — Конфигуратор ПК</title>
+    <!-- Подключаем Tailwind CSS для сетки и стилизации -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем Three.js для 3D сборки -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0b0b0e] text-white min-h-screen flex flex-col font-sans">
 
+    <!-- Верхняя навигация -->
+    <header class="border-b border-zinc-800 bg-[#141419]/80 backdrop-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 bg-[#ff007f] rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(255,0,127,0.5)]">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-white via-zinc-200 to-[#ff007f] bg-clip-text text-transparent">BUILDCORES</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="saveBuild()" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-sm font-semibold rounded-lg transition border border-zinc-700">💾 Сохранить</button>
+            <button onclick="resetBuild()" class="px-4 py-2 bg-[#ff007f]/10 hover:bg-[#ff007f]/20 text-[#ff007f] text-sm font-semibold rounded-lg transition border border-[#ff007f]/30">Сбросить</button>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Левая/Центральная часть: Сборка комплектующих -->
+        <div class="lg:col-span-2 space-y-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-black tracking-wide">КОНФИГУРАТОР СБОРКИ</h1>
+                <span id="total-price" class="text-xl font-bold text-[#ff007f]">$0</span>
+            </div>
+
+            <!-- Список слотов компонентов -->
+            <div id="components-list" class="space-y-3">
+                <!-- Динамически заполняется через JS -->
+            </div>
+        </div>
+
+        <!-- Правая часть: 3D Студия и Аналитика -->
+        <div class="space-y-6">
+            <!-- 3D Студия корпуса -->
+            <div class="bg-[#141419] border border-zinc-800 rounded-2xl p-4 relative overflow-hidden shadow-2xl">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-zinc-400">3D Просмотр Сборки</h2>
+                    <button onclick="toggleRGB()" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-2.5 py-1 rounded-md transition text-[#ff007f] font-semibold">✨ RGB Подсветка</button>
+                </div>
+                <div id="canvas-container" class="w-full h-64 rounded-xl bg-black/40 border border-zinc-800/80 relative flex items-center justify-center">
+                    <!-- Сюда встраивается Three.js холст -->
+                </div>
+            </div>
+
+            <!-- Характеристики и совместимость -->
+            <div class="bg-[#141419] border border-zinc-800 rounded-2xl p-5 space-y-4 shadow-2xl">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-zinc-400">Системный мониторинг</h2>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between items-center pb-2 border-b border-zinc-800/60">
+                        <span class="text-zinc-400">Энергопотребление (TDP)</span>
+                        <span id="stat-tdp" class="font-bold">0 Вт</span>
+                    </div>
+                    <div class="flex justify-between items-center pb-2 border-b border-zinc-800/60">
+                        <span class="text-zinc-400">Совместимость</span>
+                        <span id="stat-compatibility" class="text-emerald-400 font-semibold">✓ Всё совместимо</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-zinc-400">Статус сборки</span>
+                        <span id="stat-status" class="text-amber-400 font-semibold">В процессе</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно выбора комплектующих -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-[#141419] border border-zinc-800 w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-2xl max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center">
+                <h3 id="modal-title" class="text-lg font-bold">Выбор компонента</h3>
+                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            <div id="modal-search-container" class="relative">
+                <input type="text" id="modal-search" placeholder="Поиск модели..." oninput="filterParts(this.value)" class="w-full bg-black/40 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#ff007f] transition">
+            </div>
+            <div id="modal-items" class="overflow-y-auto space-y-2 flex-1 pr-1">
+                <!-- Список выбора -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>
